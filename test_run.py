@@ -6,32 +6,33 @@ import time
 import math
 import pytest
 
+
 class TestMainPage1(object):
     #browser = None
     def setup_method(self):
-        #print("\nstart browser for test suite1")
+        print("\nstart browser for test suite1")
         self.browser = webdriver.Chrome()
         self.button = None
 
     def teardown_method(self):
-        #print("quit browser for test suite1")
+        print("quit browser for test suite1")
         self.browser.quit()
 
     def test_suite1(self):
         # link = "https://stepik.org/lesson/236895/step/1"
         self.browser.get("https://stepik.org/lesson/236895/step/1")
         self.browser.implicitly_wait(5)
-        input1 = self.browser.find_element_by_css_selector('[placeholder]')
+        input1 = self.browser.find_element_by_css_selector('.textarea')
         # input1 = browser.find_element_by_xpath('//*[@id="answer"]')
         input1.send_keys(str(math.log(int(time.time()+0.5))))
         #time.sleep(5)
 
         button = WebDriverWait(self.browser, 5).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, "#ember56 > div > section > div > div.attempt__inner > div.attempt__actions > button"))
+            EC.element_to_be_clickable((By.CSS_SELECTOR, ".submit-submission"))
     )
         button.click()
         self.browser.implicitly_wait(5)
-        message = self.browser.find_element_by_css_selector("#ember76 > pre")
+        message = self.browser.find_element_by_css_selector(".smart-hints__hint")
 
         assert "Correct!" in message.text
 
