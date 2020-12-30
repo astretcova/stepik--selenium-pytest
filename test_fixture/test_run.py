@@ -25,7 +25,6 @@ class TestMainPage1(object):
         input1 = self.browser.find_element_by_css_selector('.textarea')
         # input1 = browser.find_element_by_xpath('//*[@id="answer"]')
         input1.send_keys(str(math.log(int(time.time()+0.5))))
-        #time.sleep(5)
 
         button = WebDriverWait(self.browser, 5).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, ".submit-submission"))
